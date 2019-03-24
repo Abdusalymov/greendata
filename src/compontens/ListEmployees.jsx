@@ -5,26 +5,27 @@ class ListEmployees extends React.Component{
         super(props);
 
         this.state = {
-            selected: '',
-            higlight: '',
+            active: '',
         }
     }
 
+    componentWillReceiveProps(nextProps){
+        this.setState({ active: nextProps.lastElem.id })
+    }
 
     setIdInState(id){
-        this.setState({selected: id});
+        this.setState({ active: id })
     }
 
     render(){
-        const {list, lastElem} = this.props;
-        // const selected = this.state.selected;
         return(
             <ul className="list-group catalog_list-employees">
                 {
-                    list.map(item => 
+                    
+                    this.props.list.map(item => 
                         <li 
                             key={item.id} 
-                            className={`list-group-item catalog_list-item active`}
+                            className={`list-group-item catalog_list-item ${ item.id === this.state.active && 'active'}`}
                             onClick={() => { this.setIdInState(item.id); }}
                         >
                             {item.fullName}
