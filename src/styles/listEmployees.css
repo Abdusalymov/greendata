@@ -1,0 +1,6 @@
+.catalog_list-employees{
+    overflow-y: auto;
+}
+.catalog_list-item{
+    cursor: pointer;
+}
